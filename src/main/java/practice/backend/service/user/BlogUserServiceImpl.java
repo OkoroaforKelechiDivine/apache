@@ -7,8 +7,8 @@ import practice.backend.dto.request.CreateBloggerDto;
 import practice.backend.dto.request.UpdateBloggerDto;
 import practice.backend.exception.BlogException;
 import practice.backend.model.roleType.UserType;
-import practice.backend.model.user.Blogger;
-import practice.backend.repository.user.BloggerRepository;
+import practice.backend.model.user.BlogUser;
+import practice.backend.repository.user.BlogUserRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,21 +17,24 @@ import java.util.Objects;
 
 @Service
 @Slf4j
-public class BloggerServiceImpl implements BloggerService{
+public class BlogUserServiceImpl implements BlogUserService {
 
     @Autowired
-    private BloggerRepository bloggerRepository;
+    private BlogUserRepository blogUserRepository;
 
-    public Blogger findById(int id){
-        return bloggerRepository.findById(id);
+    public BlogUser findById(int id){
+        return blogUserRepository.findById(id);
     }
 
     public Boolean userDoesNotExistById(int id){
-        return !bloggerRepository.existsById(id);
+        return !blogUserRepository.existsById(id);
     }
 
+    public Boolean existByEmail(String email){
+        return blogUserRepository.existByEmail(email);
+    }
     @Override
-    public Blogger createUser(CreateBloggerDto newUser) throws BlogException {
+    public BlogUser createUser(CreateBloggerDto newUser) throws BlogException {
 
         if (Objects.equals(newUser.getEmail(), "")){
             throw new BlogException("User email is empty");
@@ -42,28 +45,28 @@ public class BloggerServiceImpl implements BloggerService{
         if (newUser.getPassword().length() < 5){
             throw new BlogException("User password should not be less than 5 characters");
         }
-        Blogger blogger = new Blogger();
-        blogger.setCreatedDate(LocalDate.now());
-        blogger.setEmail(newUser.getEmail());
-        blogger.setGender(newUser.getGender());
-        blogger.setUserType(UserType.USER);
-        blogger.setPassword(newUser.getPassword());
-        return bloggerRepository.save(blogger);
+        BlogUser blogUser = new BlogUser();
+        blogUser.setCreatedDate(LocalDate.now());
+        blogUser.setEmail(newUser.getEmail());
+        blogUser.setGender(newUser.getGender());
+        blogUser.setUserType(UserType.USER);
+        blogUser.setPassword(newUser.getPassword());
+        return blogUserRepository.save(blogUser);
     }
 
     @Override
-    public Blogger findUserById(int id) {
-        return bloggerRepository.findById(id);
+    public BlogUser findUserById(int id) {
+        return blogUserRepository.findById(id);
     }
 
     @Override
-    public Blogger findUserByEmail(String email) {
-        return bloggerRepository.findByEmail(email);
+    public BlogUser findUserByEmail(String email) {
+        return blogUserRepository.findByEmail(email);
     }
 
     @Override
-    public Blogger updateUser(UpdateBloggerDto updateBloggerDto) throws BlogException {
-        Blogger existingUser = findById(updateBloggerDto.getId());
+    public BlogUser updateUser(UpdateBloggerDto updateBloggerDto) throws BlogException {
+        BlogUser existingUser = findById(updateBloggerDto.getId());
 
         if (userDoesNotExistById(updateBloggerDto.getId())){
             throw new BlogException("User with that id doesn't exist");
@@ -78,17 +81,17 @@ public class BloggerServiceImpl implements BloggerService{
             existingUser.setPhoneNumber(updateBloggerDto.getPhoneNumber());
         }
         existingUser.setModifiedDate(LocalDateTime.now());
-        bloggerRepository.save(existingUser);
+        blogUserRepository.save(existingUser);
         return existingUser;
     }
 
     @Override
     public void deleteUser(int id) {
-        bloggerRepository.deleteById(id);
+        blogUserRepository.deleteById(id);
     }
 
     @Override
-    public List<Blogger> findAllUsers() {
-        return bloggerRepository.findAll();
+    public List<BlogUser> findAllUsers() {
+        return blogUserRepository.findAll();
     }
 }

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Blogger {
+public class BlogUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
