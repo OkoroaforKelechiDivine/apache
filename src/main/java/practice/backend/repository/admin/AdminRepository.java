@@ -19,9 +19,5 @@ public interface AdminRepository extends JpaRepository<Admin, Integer> {
         save(admin);
     }
 
-    default void deleteAdminById(int id){
-        deleteById(id);
-    }
-
     List<Admin> findAll();
 }

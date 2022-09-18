@@ -18,6 +18,5 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
     Post findPostByContent(String postContent);
 
-
 }
 

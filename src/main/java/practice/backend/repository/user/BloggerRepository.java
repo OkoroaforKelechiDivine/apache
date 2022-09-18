@@ -13,7 +13,7 @@ public interface BloggerRepository extends JpaRepository<Blogger, Integer> {
 
     Blogger findById(int id);
 
-    boolean existsByEmail(String email);
+    Blogger findByEmail(String email);
 
     default void updatedBlogger(Blogger blogger){
         blogger.setCreatedDate(LocalDate.now());

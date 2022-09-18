@@ -27,6 +27,8 @@ public class Admin {
 
     private String phoneNumber;
 
+    private String password;
+
     private LocalDate createdDate;
 
     private Gender gender;
