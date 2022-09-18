@@ -2,6 +2,7 @@ package practice.backend.service.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import practice.backend.dto.request.CreateBloggerDto;
 import practice.backend.dto.request.UpdateBloggerDto;
@@ -30,6 +31,11 @@ public class BlogUserServiceImpl implements BlogUserService {
         return !blogUserRepository.existsById(id);
     }
 
+    private String encryptPassword(String password) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder.encode(password);
+    }
+
     public Boolean existByEmail(String email){
         return blogUserRepository.existByEmail(email);
     }
@@ -50,7 +56,7 @@ public class BlogUserServiceImpl implements BlogUserService {
         blogUser.setEmail(newUser.getEmail());
         blogUser.setGender(newUser.getGender());
         blogUser.setUserType(UserType.USER);
-        blogUser.setPassword(newUser.getPassword());
+        blogUser.setPassword(encryptPassword(newUser.getPassword()));
         return blogUserRepository.save(blogUser);
     }
 

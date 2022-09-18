@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import practice.backend.model.post.Post;
 import practice.backend.model.roleType.Gender;
 import practice.backend.model.roleType.UserType;
+import practice.backend.model.user.BlogUser;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -34,6 +35,9 @@ public class Admin {
     private Gender gender;
 
     private UserType userType;
+
+    @OneToOne
+    private BlogUser user;
 
     @OneToMany
     private List<Post> post;
