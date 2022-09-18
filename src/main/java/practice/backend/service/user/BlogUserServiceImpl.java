@@ -37,7 +37,7 @@ public class BlogUserServiceImpl implements BlogUserService {
     }
 
     public Boolean existByEmail(String email){
-        return blogUserRepository.existByEmail(email);
+        return blogUserRepository.existsByEmail(email);
     }
     @Override
     public BlogUser createUser(CreateBloggerDto newUser) throws BlogException {

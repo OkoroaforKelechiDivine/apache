@@ -17,12 +17,11 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/blog-user")
 @Slf4j
-@CrossOrigin(origins = "*", allowCredentials = "*")
+@CrossOrigin(origins = "true", allowCredentials = "true")
 public class BlogUserController {
 
     @Autowired
     private BlogUserServiceImpl userService;
-
 
     @PostMapping("")
     public ResponseEntity<?> registerUser(@Valid @RequestBody CreateBloggerDto createBloggerDto, HttpServletRequest httpServletRequest) throws BlogException {

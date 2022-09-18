@@ -17,7 +17,7 @@ public class RestAccessDeniedHandler implements AuthenticationFailureHandler {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, IOException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
         Map<String, String> responseObj = new HashMap<>();
         responseObj.put("message", "Incorrect email or password, try again.");
         responseObj.put("status", HttpStatus.UNAUTHORIZED.toString());

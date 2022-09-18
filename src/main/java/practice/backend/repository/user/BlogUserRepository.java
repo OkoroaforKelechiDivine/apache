@@ -25,5 +25,5 @@ public interface BlogUserRepository extends JpaRepository<BlogUser, Integer> {
 
     List<BlogUser> findAll();
 
-    Boolean existByEmail(String email);
+    Boolean existsByEmail(String email);
 }
