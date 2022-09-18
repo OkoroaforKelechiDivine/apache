@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import practice.backend.model.roleType.Gender;
+import practice.backend.model.roleType.UserType;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -24,4 +25,7 @@ public class CreateBloggerDto {
 
     @NotEmpty(message = "Password should not be empty.")
     private String password;
+
+    @NotEmpty(message = "Please provide a user type")
+    private UserType roleType;
 }

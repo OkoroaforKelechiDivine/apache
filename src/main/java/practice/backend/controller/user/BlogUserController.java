@@ -34,4 +34,5 @@ public class BlogUserController {
         ResponseDetails responseDetails = new ResponseDetails(LocalDateTime.now(), "Account created successfully", HttpStatus.OK.toString());
         return ResponseEntity.status(200).body(responseDetails);
     }
+
 }
