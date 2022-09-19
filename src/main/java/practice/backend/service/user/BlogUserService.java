@@ -1,7 +1,7 @@
 package practice.backend.service.user;
 
 import practice.backend.dto.request.RegisterUserDto;
-import practice.backend.dto.request.UpdateBloggerDto;
+import practice.backend.dto.request.UpdateUserDto;
 import practice.backend.exception.BlogException;
 import practice.backend.model.user.BlogUser;
 
@@ -15,7 +15,7 @@ public interface BlogUserService {
 
     BlogUser findUserByEmail(String email);
 
-    BlogUser updateUser(UpdateBloggerDto updateBloggerDto) throws BlogException;
+    BlogUser updateUser(UpdateUserDto updateUserDto) throws BlogException;
 
     void deleteUser(int id);
 

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import practice.backend.dto.request.RegisterUserDto;
-import practice.backend.dto.request.UpdateBloggerDto;
+import practice.backend.dto.request.UpdateUserDto;
 import practice.backend.exception.BlogException;
 import practice.backend.model.admin.Admin;
 import practice.backend.model.roleType.UserType;
@@ -100,20 +100,20 @@ public class BlogUserServiceImpl implements BlogUserService {
     }
 
     @Override
-    public BlogUser updateUser(UpdateBloggerDto updateBloggerDto) throws BlogException {
-        BlogUser existingUser = findById(updateBloggerDto.getId());
+    public BlogUser updateUser(UpdateUserDto updateUserDto) throws BlogException {
+        BlogUser existingUser = findById(updateUserDto.getId());
 
-        if (userDoesNotExistById(updateBloggerDto.getId())){
+        if (userDoesNotExistById(updateUserDto.getId())){
             throw new BlogException("User with that id doesn't exist.");
         }
-        if (updateBloggerDto.getEmail() != null){
-            existingUser.setEmail(updateBloggerDto.getEmail());
+        if (updateUserDto.getEmail() != null){
+            existingUser.setEmail(updateUserDto.getEmail());
         }
-        if (updateBloggerDto.getUsername() != null){
-            existingUser.setUsername(updateBloggerDto.getUsername());
+        if (updateUserDto.getUsername() != null){
+            existingUser.setUsername(updateUserDto.getUsername());
         }
-        if (updateBloggerDto.getPhoneNumber() != null){
-            existingUser.setPhoneNumber(updateBloggerDto.getPhoneNumber());
+        if (updateUserDto.getPhoneNumber() != null){
+            existingUser.setPhoneNumber(updateUserDto.getPhoneNumber());
         }
         existingUser.setModifiedDate(LocalDateTime.now());
         return blogUserRepository.save(existingUser);
