@@ -10,15 +10,5 @@ import java.util.List;
 
 public interface AdminService {
 
-    Admin createAdmin(RegisterAdminDto registerAdminDto) throws BlogException;
-
-    Admin findAdminById(int id);
-
-    Admin findAdminByEmail(String email);
-
-    Admin updateAdmin(UpdateAdminDto updateAdminDto) throws BlogException;
-
-    void deleteAdmin(int id);
-
     List<Admin> findAllAdmins();
 }

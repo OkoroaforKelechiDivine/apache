@@ -14,6 +14,8 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class RegisterUserDto {
 
+    private Integer id;
+
     @NotEmpty(message = "User name should not be empty")
     private String username;
 

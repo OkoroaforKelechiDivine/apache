@@ -17,6 +17,7 @@ import practice.backend.dto.request.ResponseDto;
 import practice.backend.dto.request.UnsuccessfulLogin;
 import practice.backend.exception.BlogException;
 import practice.backend.model.admin.Admin;
+import practice.backend.model.roleType.UserType;
 import practice.backend.model.user.BlogUser;
 import practice.backend.repository.admin.AdminRepository;
 import practice.backend.repository.user.BlogUserRepository;
@@ -50,7 +51,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         userRepository = context.getBean(BlogUserRepository.class);
         adminRepository = context.getBean(AdminRepository.class);
         setFilterProcessesUrl("/user/login");
-        setFilterProcessesUrl("/admin/login");
     }
 
     @Override
@@ -76,7 +76,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String email = ((User) authResult.getPrincipal()).getUsername();
         BlogUser user = userRepository.findByEmail(email);
 
-        if (credential.getType() != null && credential.getType().equals("ADMIN")) {
+        if (credential.getType() != null && credential.getType().equals(UserType.ADMIN)) {
             Admin admin = adminRepository.findByUser(user);
             if (admin == null) {
                 throw new javax.security.sasl.AuthenticationException("Admin details should not be empty.");
@@ -89,7 +89,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             responseDto.setToken(token);
         }
         else {
-            BlogUser blogUser = userRepository.findById(user.getId());
+            BlogUser blogUser = userRepository.findBlogUserById(user.getId());
             responseDto = new ResponseDto();
             responseDto.setEmail(blogUser.getEmail());
             responseDto.setCreatedDate(LocalDateTime.now().toString());
@@ -110,9 +110,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         super.unsuccessfulAuthentication(request, response, failed);
-        UnsuccessfulLogin userResponseDetails = new UnsuccessfulLogin(LocalDateTime.now(), "User login error. Incorrect email or password.", "Bad request", "/user/login");
-        UnsuccessfulLogin adminResponseDetails = new UnsuccessfulLogin(LocalDateTime.now(), "Admin login error. Incorrect email or password.", "Bad request", "/admin/login");
-        response.getOutputStream().print("{ \"message\": " + userResponseDetails + "}");
-        response.getOutputStream().print("{ \"message\": " + adminResponseDetails + "}");
+        UnsuccessfulLogin responseDetails = new UnsuccessfulLogin(LocalDateTime.now(), "Login error. Incorrect email or password.", "Bad request", "/user/login");
+        response.getOutputStream().print("{ \"message\": " + responseDetails + "}");
     }
 }

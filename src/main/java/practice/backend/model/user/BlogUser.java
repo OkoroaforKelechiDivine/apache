@@ -3,13 +3,11 @@ package practice.backend.model.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import practice.backend.model.admin.Admin;
 import practice.backend.model.roleType.Gender;
 import practice.backend.model.roleType.UserType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,8 +18,8 @@ import java.time.LocalDateTime;
 public class BlogUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Integer id;
 
     private String username;
 
@@ -38,4 +36,5 @@ public class BlogUser {
     private String email;
 
     private LocalDate createdDate;
+
 }
