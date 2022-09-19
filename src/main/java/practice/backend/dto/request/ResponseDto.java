@@ -19,10 +19,6 @@ public class ResponseDto {
 
     private String username;
 
-//    private String firstName;
-//
-//    private String lastName;
-
     private String phoneNumber;
 
     private String email;

@@ -41,23 +41,28 @@ public class BlogUserServiceImpl implements BlogUserService {
         return bCryptPasswordEncoder.encode(password);
     }
 
-    public Boolean existByUsername(String username){
+    public Boolean usernameAlreadyExistsForBlogUser(String username){
+        return blogUserRepository.existsByUsername(username);
+    }
+    
+    public Boolean usernameAlreadyExistsForAdmin(String username){
         return adminRepository.existsByUsername(username);
     }
 
     public Boolean existByEmail(String email){
         return blogUserRepository.existsByEmail(email);
     }
+   
     @Override
     public BlogUser createUser(RegisterUserDto user) throws BlogException {
         if (Objects.equals(user.getEmail(), "")){
-            throw new BlogException("User email is empty");
+            throw new BlogException("User email is empty.");
         }
         if (!user.getEmail().contains("@")){
-            throw new BlogException("Invalid user email");
+            throw new BlogException("Invalid user email.");
         }
         if (user.getPassword().length() < 5){
-            throw new BlogException("User password should not be less than 5 characters");
+            throw new BlogException("User password should not be less than 5 characters.");
         }
         BlogUser blogUser = new BlogUser();
         blogUser.setCreatedDate(LocalDate.now());
@@ -67,13 +72,16 @@ public class BlogUserServiceImpl implements BlogUserService {
         blogUser.setUserType(user.getRoleType());
         blogUser.setPassword(encryptPassword(user.getPassword()));
 
+        if (usernameAlreadyExistsForBlogUser(blogUser.getUsername())){
+            throw new BlogException("A user with username '" + blogUser.getUsername() +  "' already exists.");
+        }
         Admin admin = new Admin();
         admin.setUserType(blogUser.getUserType());
         admin.setUsername(user.getUsername());
         admin.setCreatedDate(LocalDateTime.now());
 
         if (admin.getUserType().equals(UserType.ADMIN)) {
-            if (existByUsername(admin.getUsername())){
+            if (usernameAlreadyExistsForAdmin(admin.getUsername())){
                 throw new BlogException("An admin with username '" + admin.getUsername() + "' already exist.");
             }
             adminRepository.save(admin);
@@ -96,7 +104,7 @@ public class BlogUserServiceImpl implements BlogUserService {
         BlogUser existingUser = findById(updateBloggerDto.getId());
 
         if (userDoesNotExistById(updateBloggerDto.getId())){
-            throw new BlogException("User with that id doesn't exist");
+            throw new BlogException("User with that id doesn't exist.");
         }
         if (updateBloggerDto.getEmail() != null){
             existingUser.setEmail(updateBloggerDto.getEmail());
@@ -108,8 +116,7 @@ public class BlogUserServiceImpl implements BlogUserService {
             existingUser.setPhoneNumber(updateBloggerDto.getPhoneNumber());
         }
         existingUser.setModifiedDate(LocalDateTime.now());
-        blogUserRepository.save(existingUser);
-        return existingUser;
+        return blogUserRepository.save(existingUser);
     }
 
     @Override

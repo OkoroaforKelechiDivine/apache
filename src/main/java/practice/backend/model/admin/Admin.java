@@ -7,9 +7,7 @@ import practice.backend.model.roleType.UserType;
 import practice.backend.model.user.BlogUser;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @AllArgsConstructor
@@ -29,4 +27,6 @@ public class Admin {
 
     @OneToOne
     private BlogUser user;
+
+    private Integer postId;
 }

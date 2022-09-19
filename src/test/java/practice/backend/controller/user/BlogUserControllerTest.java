@@ -21,7 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @AutoConfigureMockMvc
 @SpringBootTest
-
 public class BlogUserControllerTest {
 
     @Autowired
@@ -45,11 +44,11 @@ public class BlogUserControllerTest {
     @Test
     @DisplayName("Create account")
     public void test_createUserAccount() throws Exception {
-        registerDto.setPassword("zip it now or never");
-        registerDto.setUsername("Demon");
-        registerDto.setGender(Gender.MALE);
+        registerDto.setPassword("I am the female admin.");
+        registerDto.setUsername("Esther");
+        registerDto.setGender(Gender.FEMALE);
         registerDto.setRoleType(UserType.ADMIN);
-        registerDto.setEmail("mailme@gmail.com");
+        registerDto.setEmail("admin@gmail.com");
 
         this.mockMvc.perform(post("/blog-user")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -62,8 +61,8 @@ public class BlogUserControllerTest {
     @Test
     @DisplayName("Login")
     public void test_userLogin() throws Exception {
-        loginDto.setPassword("zip it now or never");
-        loginDto.setEmail("softwareengineer@gmail.com");
+        loginDto.setPassword("I am the female admin.");
+        loginDto.setEmail("admin@gmail.com");
         this.mockMvc.perform(post("/user/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(loginDto)))

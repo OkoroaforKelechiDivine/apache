@@ -3,7 +3,6 @@ package practice.backend.model.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import practice.backend.model.admin.Admin;
 import practice.backend.model.roleType.Gender;
 import practice.backend.model.roleType.UserType;
 
@@ -36,5 +35,4 @@ public class BlogUser {
     private String email;
 
     private LocalDate createdDate;
-
 }

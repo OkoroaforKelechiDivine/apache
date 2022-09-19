@@ -1,6 +1,5 @@
 package practice.backend.dto.request;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +15,13 @@ public class RegisterUserDto {
 
     private Integer id;
 
-    @NotEmpty(message = "User name should not be empty")
+    @NotEmpty(message = "User name should not be empty.")
     private String username;
 
-    @NotEmpty(message = "Email must not be empty")
+    @NotEmpty(message = "Email must not be empty.")
     private String email;
 
-    @NotEmpty(message = "Gender must not be empty")
+    @NotEmpty(message = "Gender must not be empty.")
     private Gender gender;
 
     @NotEmpty(message = "Password should not be empty.")

@@ -58,7 +58,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             throw new BlogException("User does not exist.");
         }
         else {
-            throw new BlogException("User does not exist.");
+            throw new BlogException("Token message: User does not exist.");
         }
     }
 }

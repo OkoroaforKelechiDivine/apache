@@ -103,7 +103,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
         response.setHeader(HttpHeaders.CONTENT_TYPE, "application/json");
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
-        response.getOutputStream().print("{ \"data\": " + objectMapper.writeValueAsString(responseDto) + "}");
+        response.getOutputStream().print("{ \"Object data\": " + objectMapper.writeValueAsString(responseDto) + "}");
         response.flushBuffer();
     }
 
@@ -111,6 +111,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         super.unsuccessfulAuthentication(request, response, failed);
         UnsuccessfulLogin responseDetails = new UnsuccessfulLogin(LocalDateTime.now(), "Login error. Incorrect email or password.", "Bad request", "/user/login");
-        response.getOutputStream().print("{ \"message\": " + responseDetails + "}");
+        response.getOutputStream().print("{ \"Server response\": " + responseDetails + "}");
     }
 }

@@ -13,18 +13,18 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class RegisterAdminDto {
 
-    @NotEmpty(message = "User name should not be empty")
+    @NotEmpty(message = "User name should not be empty.")
     private String username;
 
-    @NotEmpty(message = "Email must not be empty")
+    @NotEmpty(message = "Email must not be empty.")
     private String email;
 
-    @NotEmpty(message = "Gender must not be empty")
+    @NotEmpty(message = "Gender must not be empty.")
     private Gender gender;
 
     @NotEmpty(message = "Password should not be empty.")
     private String password;
 
-    @NotEmpty(message = "Please provide a user type")
+    @NotEmpty(message = "Please provide a user type.")
     private UserType roleType;
 }
