@@ -1,32 +1,33 @@
-package practice.backend.model.admin;
+package practice.backend.model.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import practice.backend.model.reaction.Reactions;
 import practice.backend.model.roleType.UserType;
-import practice.backend.model.user.BlogUser;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Admin {
+public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private UserType userType;
+    private String content;
 
-    private String username;
+    private UserType author;
 
     private LocalDateTime createdDate;
 
-    @OneToOne
-    private BlogUser user;
+    private int postView;
 
-    private Integer postId;
+    private Integer adminId;
+
+    private Reactions reactions;
 }
