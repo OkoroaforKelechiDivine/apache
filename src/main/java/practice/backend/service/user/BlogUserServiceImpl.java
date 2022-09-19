@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import practice.backend.dto.request.CreateBloggerDto;
+import practice.backend.dto.request.RegisterUserDto;
 import practice.backend.dto.request.UpdateBloggerDto;
 import practice.backend.exception.BlogException;
 import practice.backend.model.roleType.UserType;
@@ -40,7 +40,7 @@ public class BlogUserServiceImpl implements BlogUserService {
         return blogUserRepository.existsByEmail(email);
     }
     @Override
-    public BlogUser createUser(CreateBloggerDto newUser) throws BlogException {
+    public BlogUser createUser(RegisterUserDto newUser) throws BlogException {
 
         if (Objects.equals(newUser.getEmail(), "")){
             throw new BlogException("User email is empty");

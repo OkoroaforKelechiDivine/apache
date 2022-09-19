@@ -50,7 +50,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         userRepository = context.getBean(BlogUserRepository.class);
         adminRepository = context.getBean(AdminRepository.class);
         setFilterProcessesUrl("/user/login");
-//        setFilterProcessesUrl("/admin/login");
+        setFilterProcessesUrl("/admin/login");
     }
 
     @Override
@@ -111,8 +111,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         super.unsuccessfulAuthentication(request, response, failed);
         UnsuccessfulLogin userResponseDetails = new UnsuccessfulLogin(LocalDateTime.now(), "User login error. Incorrect email or password.", "Bad request", "/user/login");
-//        UnsuccessfulLogin adminResponseDetails = new UnsuccessfulLogin(LocalDateTime.now(), "Admin login error. Incorrect email or password.", "Bad request", "/admin/login");
+        UnsuccessfulLogin adminResponseDetails = new UnsuccessfulLogin(LocalDateTime.now(), "Admin login error. Incorrect email or password.", "Bad request", "/admin/login");
         response.getOutputStream().print("{ \"message\": " + userResponseDetails + "}");
-//        response.getOutputStream().print("{ \"message\": " + adminResponseDetails + "}");
+        response.getOutputStream().print("{ \"message\": " + adminResponseDetails + "}");
     }
 }

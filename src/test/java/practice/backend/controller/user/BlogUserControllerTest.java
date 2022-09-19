@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import practice.backend.dto.request.CreateBloggerDto;
+import practice.backend.dto.request.RegisterUserDto;
 import practice.backend.dto.request.LoginDto;
 import practice.backend.model.roleType.Gender;
 import practice.backend.model.roleType.UserType;
@@ -31,14 +31,14 @@ public class BlogUserControllerTest {
 
     private ObjectMapper objectMapper;
 
-    private CreateBloggerDto registerDto;
+    private RegisterUserDto registerDto;
 
-    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2Z0d2FyZWVuZ2luZWVyQGdtYWlsLmNvbSIsImV4cCI6MTY2NDIzMjUwMn0.zTH38McZvvc4JwA-YIkf4DMCtSgZgOCAvn544dk52PJGWThf0jwT-CqOfPLFGhsZhx__8Z8BoNsD0D-IFYxwKQ";
+    String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2Z0d2FyZWVuZ2luZWVyQGdtYWlsLmNvbSIsImV4cCI6MTY2NDM5MDIwMn0.XV1bBlPmhKR-wT1Y4HYgv-y5v0ZUi5P6cxQMEGd5xID_Q0APMso3gklBYDpemEOdJmavmTI2e3S2TCJQFjw7BA";
 
     @BeforeEach
     public void startUpMethod() {
         objectMapper = new ObjectMapper();
-        registerDto = new CreateBloggerDto();
+        registerDto = new RegisterUserDto();
         loginDto = new LoginDto();
     }
 

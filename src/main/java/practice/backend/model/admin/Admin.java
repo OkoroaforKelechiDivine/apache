@@ -10,6 +10,7 @@ import practice.backend.model.user.BlogUser;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -33,6 +34,8 @@ public class Admin {
     private LocalDate createdDate;
 
     private Gender gender;
+
+    private LocalDateTime modifiedDate;
 
     private UserType userType;
 

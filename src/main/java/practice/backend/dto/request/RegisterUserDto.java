@@ -12,7 +12,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateBloggerDto {
+public class RegisterUserDto {
 
     @NotEmpty(message = "User name should not be empty")
     private String username;

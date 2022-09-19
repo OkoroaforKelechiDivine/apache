@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import practice.backend.dto.request.CreateBloggerDto;
+import practice.backend.dto.request.RegisterUserDto;
 import practice.backend.dto.response.ResponseDetails;
 import practice.backend.exception.BlogException;
 import practice.backend.service.user.BlogUserServiceImpl;
@@ -24,9 +24,9 @@ public class BlogUserController {
     private BlogUserServiceImpl userService;
 
     @PostMapping("")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody CreateBloggerDto createBloggerDto, HttpServletRequest httpServletRequest) throws BlogException {
-        if (!userService.existByEmail(createBloggerDto.getEmail())){
-            userService.createUser(createBloggerDto);
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterUserDto registerUserDto, HttpServletRequest httpServletRequest) throws BlogException {
+        if (!userService.existByEmail(registerUserDto.getEmail())){
+            userService.createUser(registerUserDto);
         }
         else {
             throw new BlogException("User with that email already exist.");
