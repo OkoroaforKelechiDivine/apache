@@ -45,7 +45,7 @@ public class BlogUserServiceImpl implements BlogUserService {
         return blogUserRepository.existsByUsername(username);
     }
     
-    public Boolean usernameAlreadyExistsForAdmin(String username){
+    public Boolean existsByAdminUsername(String username){
         return adminRepository.existsByUsername(username);
     }
 
@@ -73,7 +73,7 @@ public class BlogUserServiceImpl implements BlogUserService {
         blogUser.setPassword(encryptPassword(user.getPassword()));
 
         if (alreadyExistByUsername(blogUser.getUsername())){
-            throw new BlogException("A user with username '" + blogUser.getUsername() +  "' already exists.");
+            throw new BlogException("User with username '" + blogUser.getUsername() +  "' already exists.");
         }
         Admin admin = new Admin();
         admin.setUserType(blogUser.getUserType());
@@ -81,7 +81,7 @@ public class BlogUserServiceImpl implements BlogUserService {
         admin.setCreatedDate(LocalDateTime.now());
 
         if (admin.getUserType().equals(UserType.ADMIN)) {
-            if (usernameAlreadyExistsForAdmin(admin.getUsername())){
+            if (existsByAdminUsername(admin.getUsername())){
                 throw new BlogException("An admin with username '" + admin.getUsername() + "' already exist.");
             }
             adminRepository.save(admin);
