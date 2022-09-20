@@ -89,7 +89,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             responseDto.setToken(token);
         }
         else {
-            BlogUser blogUser = userRepository.findBlogUserById(user.getId());
+            BlogUser blogUser = userRepository.findUserById(user.getId());
             responseDto = new ResponseDto();
             responseDto.setEmail(blogUser.getEmail());
             responseDto.setCreatedDate(LocalDateTime.now().toString());

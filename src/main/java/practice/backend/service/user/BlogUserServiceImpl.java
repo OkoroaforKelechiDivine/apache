@@ -29,7 +29,7 @@ public class BlogUserServiceImpl implements BlogUserService {
     private AdminRepository adminRepository;
 
     public BlogUser findById(int id){
-        return blogUserRepository.findBlogUserById(id);
+        return blogUserRepository.findUserById(id);
     }
 
     public Boolean userDoesNotExistById(int id){
@@ -91,7 +91,7 @@ public class BlogUserServiceImpl implements BlogUserService {
 
     @Override
     public BlogUser findUserById(int id) {
-        return blogUserRepository.findBlogUserById(id);
+        return blogUserRepository.findUserById(id);
     }
 
     @Override
