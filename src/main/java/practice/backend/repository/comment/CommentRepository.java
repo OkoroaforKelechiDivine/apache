@@ -7,7 +7,4 @@ import practice.backend.model.comment.Comment;
 import java.time.LocalDateTime;
 
 @Repository
-public interface CommentRepository extends JpaRepository<Comment, Integer> {
-
-    Comment findCommentById(Integer id);
-}
+public interface CommentRepository extends JpaRepository<Comment, Integer> {}

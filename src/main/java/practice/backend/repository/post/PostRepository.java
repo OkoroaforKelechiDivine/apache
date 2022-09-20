@@ -9,7 +9,5 @@ import practice.backend.model.post.Post;
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
     Post findPostById(Integer id);
-
-    Post findPostByContent(String content);
 }
 
