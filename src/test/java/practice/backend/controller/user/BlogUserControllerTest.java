@@ -45,10 +45,10 @@ public class BlogUserControllerTest {
     @DisplayName("Create account")
     public void test_createUserAccount() throws Exception {
         registerDto.setPassword("I am the female admin.");
-        registerDto.setUsername("Esther");
-        registerDto.setGender(Gender.FEMALE);
-        registerDto.setRoleType(UserType.ADMIN);
-        registerDto.setEmail("admin@gmail.com");
+        registerDto.setUsername("Kelechi");
+        registerDto.setGender(Gender.MALE);
+        registerDto.setRoleType(UserType.USER);
+        registerDto.setEmail("kelechi@gmail.com");
 
         this.mockMvc.perform(post("/blog-user")
                         .contentType(MediaType.APPLICATION_JSON)
