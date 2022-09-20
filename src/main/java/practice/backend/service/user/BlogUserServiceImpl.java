@@ -41,7 +41,7 @@ public class BlogUserServiceImpl implements BlogUserService {
         return bCryptPasswordEncoder.encode(password);
     }
 
-    public Boolean usernameAlreadyExistsForBlogUser(String username){
+    public Boolean alreadyExistByUsername(String username){
         return blogUserRepository.existsByUsername(username);
     }
     
@@ -72,7 +72,7 @@ public class BlogUserServiceImpl implements BlogUserService {
         blogUser.setUserType(user.getRoleType());
         blogUser.setPassword(encryptPassword(user.getPassword()));
 
-        if (usernameAlreadyExistsForBlogUser(blogUser.getUsername())){
+        if (alreadyExistByUsername(blogUser.getUsername())){
             throw new BlogException("A user with username '" + blogUser.getUsername() +  "' already exists.");
         }
         Admin admin = new Admin();
