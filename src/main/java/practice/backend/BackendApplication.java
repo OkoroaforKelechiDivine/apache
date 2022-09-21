@@ -18,10 +18,10 @@ public class BackendApplication {
         System.out.println("Application is running on port 8080.");
     }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void sendMail(){
-        emailSenderService.sendEmail("nonsookoroafor@gmail.com", "ZIPDEMON email sender",
-                "Brother Nonso, I wanted to let you know that I can still remember your email. And thank you for coming today. I put everything you've told me today into practice.");
-    }
+//    @EventListener(ApplicationReadyEvent.class)
+//    public void sendMail(){
+//        emailSenderService.sendEmail("okoroaforkelechi123@gmail.com", "ZIPDEMON email sender",
+//                "");
+//    }
 
 }
