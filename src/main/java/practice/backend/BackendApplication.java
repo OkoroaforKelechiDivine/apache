@@ -20,8 +20,8 @@ public class BackendApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void sendMail(){
-        emailSenderService.sendEmail("okoroaforkelechi123@gmail.com", "Test",
-                "Hello, Did you see the test email?");
+        emailSenderService.sendEmail("nonsookoroafor@gmail.com", "ZIPDEMON email sender",
+                "Brother Nonso, I wanted to let you know that I can still remember your email. And thank you for coming today. I put everything you've told me today into practice.");
     }
 
 }

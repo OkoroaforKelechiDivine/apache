@@ -13,7 +13,6 @@ public class EmailSenderService {
     @Autowired
     private JavaMailSender mailSender;
 
-
     public void sendEmail(String toEmail, String subject, String body){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("okoroaforkelechi123@gmail.com");
