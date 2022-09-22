@@ -6,10 +6,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Random;
 
 @Service
@@ -23,7 +19,6 @@ public class EmailSenderService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("okoroaforkelechi123@gmail.com");
         message.setTo(toEmail);
-//        message.setSentDate(Date.from(Instant.parse(LocalDate.now().toString())));
         message.setText("This is your OTP: " + generateOTP() + "\nUse this OTP to verify your account.");
         message.setSubject(subject);
 
