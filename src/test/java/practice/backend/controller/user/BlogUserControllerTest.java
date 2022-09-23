@@ -48,7 +48,7 @@ public class BlogUserControllerTest {
         registerDto.setUsername("Word of a woman");
         registerDto.setGender(Gender.FEMALE);
         registerDto.setRoleType(UserType.ADMIN);
-        registerDto.setEmail("chinwendurosemary30@gmail.com");
+        registerDto.setEmail("okoroaforkelechi123@gmail.com");
 
         this.mockMvc.perform(post("/blog-user")
                         .contentType(MediaType.APPLICATION_JSON)

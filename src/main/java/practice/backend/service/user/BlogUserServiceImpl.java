@@ -92,7 +92,7 @@ public class BlogUserServiceImpl implements BlogUserService {
             }
             adminRepository.save(admin);
         }
-        emailSenderService.sendOTP(user.getEmail(), mailSubject, emailSenderService.generateOTP());
+//        emailSenderService.sendOTP(user.getEmail(), mailSubject, emailSenderService.generateOTP());
         return blogUserRepository.save(blogUser);
     }
 

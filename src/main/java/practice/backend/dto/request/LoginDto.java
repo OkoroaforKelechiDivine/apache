@@ -14,5 +14,5 @@ public class LoginDto {
 
     private String password;
 
-//    private UserType type;
+    private UserType type;
 }

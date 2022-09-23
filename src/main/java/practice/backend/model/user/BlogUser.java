@@ -35,4 +35,6 @@ public class BlogUser {
     private String email;
 
     private LocalDate createdDate;
+
+    private Boolean isVerified;
 }
