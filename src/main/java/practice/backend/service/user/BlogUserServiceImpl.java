@@ -135,4 +135,13 @@ public class BlogUserServiceImpl implements BlogUserService {
     public List<BlogUser> findAllUsers() {
         return blogUserRepository.findAll();
     }
+
+    public BlogUser verifyUser(String email, String OTP) throws BlogException {
+        if (!blogUserRepository.existsByEmail(email)) {
+            throw new BlogException("User with that email does not exist.");
+        }
+        BlogUser profile = blogUserRepository.findByEmail(email);
+        return blogUserRepository.findUserById(profile.getId());
+    }
 }
+
