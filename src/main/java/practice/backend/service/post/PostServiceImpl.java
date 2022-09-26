@@ -31,9 +31,9 @@ public class PostServiceImpl implements PostService{
     @Autowired
     private PostRepository postRepository;
 
-    private Admin admin;
+//    private Admin admin;
 
-    List<Comment> commentList = new ArrayList<>();
+//    List<Comment> commentList = new ArrayList<>();
 
     public Boolean postDoesNotExistById(Integer id) {
         return !postRepository.existsById(id);
@@ -62,7 +62,7 @@ public class PostServiceImpl implements PostService{
         post.setAdminId(createPostDto.getAdminId());
 
         if (post.getAuthor() == UserType.USER){
-            throw new BlogException("Users are  not allowed to create a post.");
+            throw new BlogException("Users are not allowed to create a post.");
         }
         if (!existsByAdminId(post.getAdminId())){
             throw new BlogException("This admin does not have an account with us.");

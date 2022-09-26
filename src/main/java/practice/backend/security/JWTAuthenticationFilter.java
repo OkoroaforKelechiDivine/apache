@@ -1,6 +1,5 @@
 package practice.backend.security;
 
-
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -89,7 +88,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             responseDto.setToken(token);
         }
         else {
-            BlogUser blogUser = userRepository.findBlogUserById(user.getId());
+            BlogUser blogUser = userRepository.findUserById(user.getId());
             responseDto = new ResponseDto();
             responseDto.setEmail(blogUser.getEmail());
             responseDto.setCreatedDate(LocalDateTime.now().toString());

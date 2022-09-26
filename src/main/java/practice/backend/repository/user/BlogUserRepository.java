@@ -7,9 +7,8 @@ import practice.backend.model.user.BlogUser;
 import java.util.List;
 
 @Repository
-public interface BlogUserRepository extends JpaRepository<BlogUser, Integer> {
-
-    BlogUser findBlogUserById(Integer id);
+public interface BlogUserRepository extends JpaRepository<BlogUser, Integer>{
+    BlogUser findUserById(Integer id);
 
     BlogUser findByEmail(String email);
 

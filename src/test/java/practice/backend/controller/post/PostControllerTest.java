@@ -40,9 +40,9 @@ public class PostControllerTest {
     @Test
     @DisplayName("Create post")
     public void test_createPost() throws Exception {
-        createPostDto.setContent("There is time for everyone.");
+        createPostDto.setContent("I am happy to share that, I will get married soon.");
         createPostDto.setAuthor(UserType.ADMIN);
-        createPostDto.setAdminId(1);
+        createPostDto.setAdminId(2);
 
         this.mockMvc.perform(post("/posts")
                         .contentType(MediaType.APPLICATION_JSON)

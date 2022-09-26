@@ -1,6 +1,5 @@
 package practice.backend.model.comment;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

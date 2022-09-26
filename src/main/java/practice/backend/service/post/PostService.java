@@ -19,5 +19,4 @@ public interface PostService {
 
     List<Post> findAllPosts();
 
-//    Post countPostViews(PostViewDto postViewDto);
 }

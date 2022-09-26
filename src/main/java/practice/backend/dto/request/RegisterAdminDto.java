@@ -3,17 +3,19 @@ package practice.backend.dto.request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.naming.factory.SendMailFactory;
 import practice.backend.model.roleType.Gender;
 import practice.backend.model.roleType.UserType;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterAdminDto {
 
-    @NotEmpty(message = "User name should not be empty.")
+    @NotEmpty(message = "User name must not be empty.")
     private String username;
 
     @NotEmpty(message = "Email must not be empty.")
@@ -22,7 +24,7 @@ public class RegisterAdminDto {
     @NotEmpty(message = "Gender must not be empty.")
     private Gender gender;
 
-    @NotEmpty(message = "Password should not be empty.")
+    @NotEmpty(message = "Password must not be empty.")
     private String password;
 
     @NotEmpty(message = "Please provide a user type.")

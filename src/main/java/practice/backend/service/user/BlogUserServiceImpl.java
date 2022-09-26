@@ -12,6 +12,7 @@ import practice.backend.model.roleType.UserType;
 import practice.backend.model.user.BlogUser;
 import practice.backend.repository.admin.AdminRepository;
 import practice.backend.repository.user.BlogUserRepository;
+import practice.backend.service.email.EmailSenderService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,10 +27,13 @@ public class BlogUserServiceImpl implements BlogUserService {
     private BlogUserRepository blogUserRepository;
 
     @Autowired
+    private EmailSenderService emailSenderService;
+
+    @Autowired
     private AdminRepository adminRepository;
 
     public BlogUser findById(int id){
-        return blogUserRepository.findBlogUserById(id);
+        return blogUserRepository.findUserById(id);
     }
 
     public Boolean userDoesNotExistById(int id){
@@ -41,11 +45,11 @@ public class BlogUserServiceImpl implements BlogUserService {
         return bCryptPasswordEncoder.encode(password);
     }
 
-    public Boolean usernameAlreadyExistsForBlogUser(String username){
+    public Boolean alreadyExistByUsername(String username){
         return blogUserRepository.existsByUsername(username);
     }
     
-    public Boolean usernameAlreadyExistsForAdmin(String username){
+    public Boolean existsByAdminUsername(String username){
         return adminRepository.existsByUsername(username);
     }
 
@@ -55,6 +59,8 @@ public class BlogUserServiceImpl implements BlogUserService {
    
     @Override
     public BlogUser createUser(RegisterUserDto user) throws BlogException {
+        String mailSubject = "The smoking Gun OTP.";
+
         if (Objects.equals(user.getEmail(), "")){
             throw new BlogException("User email is empty.");
         }
@@ -72,8 +78,8 @@ public class BlogUserServiceImpl implements BlogUserService {
         blogUser.setUserType(user.getRoleType());
         blogUser.setPassword(encryptPassword(user.getPassword()));
 
-        if (usernameAlreadyExistsForBlogUser(blogUser.getUsername())){
-            throw new BlogException("A user with username '" + blogUser.getUsername() +  "' already exists.");
+        if (alreadyExistByUsername(blogUser.getUsername())){
+            throw new BlogException("User with username '" + blogUser.getUsername() +  "' already exists.");
         }
         Admin admin = new Admin();
         admin.setUserType(blogUser.getUserType());
@@ -81,17 +87,18 @@ public class BlogUserServiceImpl implements BlogUserService {
         admin.setCreatedDate(LocalDateTime.now());
 
         if (admin.getUserType().equals(UserType.ADMIN)) {
-            if (usernameAlreadyExistsForAdmin(admin.getUsername())){
+            if (existsByAdminUsername(admin.getUsername())){
                 throw new BlogException("An admin with username '" + admin.getUsername() + "' already exist.");
             }
             adminRepository.save(admin);
         }
+//        emailSenderService.sendOTP(user.getEmail(), mailSubject, emailSenderService.generateOTP());
         return blogUserRepository.save(blogUser);
     }
 
     @Override
     public BlogUser findUserById(int id) {
-        return blogUserRepository.findBlogUserById(id);
+        return blogUserRepository.findUserById(id);
     }
 
     @Override
@@ -128,4 +135,13 @@ public class BlogUserServiceImpl implements BlogUserService {
     public List<BlogUser> findAllUsers() {
         return blogUserRepository.findAll();
     }
+
+    public BlogUser verifyUser(String email, String OTP) throws BlogException {
+        if (!blogUserRepository.existsByEmail(email)) {
+            throw new BlogException("User with that email does not exist.");
+        }
+        BlogUser profile = blogUserRepository.findByEmail(email);
+        return blogUserRepository.findUserById(profile.getId());
+    }
 }
+
