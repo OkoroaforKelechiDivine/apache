@@ -27,9 +27,6 @@ public class BlogUserServiceImpl implements BlogUserService {
     private BlogUserRepository blogUserRepository;
 
     @Autowired
-    private EmailSenderService emailSenderService;
-
-    @Autowired
     private AdminRepository adminRepository;
 
     public BlogUser findById(int id){
@@ -59,8 +56,6 @@ public class BlogUserServiceImpl implements BlogUserService {
    
     @Override
     public BlogUser createUser(RegisterUserDto user) throws BlogException {
-        String mailSubject = "The smoking Gun OTP.";
-
         if (Objects.equals(user.getEmail(), "")){
             throw new BlogException("User email is empty.");
         }
@@ -92,7 +87,6 @@ public class BlogUserServiceImpl implements BlogUserService {
             }
             adminRepository.save(admin);
         }
-//        emailSenderService.sendOTP(user.getEmail(), mailSubject, emailSenderService.generateOTP());
         return blogUserRepository.save(blogUser);
     }
 
