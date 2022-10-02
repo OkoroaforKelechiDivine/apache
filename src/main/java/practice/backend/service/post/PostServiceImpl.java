@@ -26,14 +26,7 @@ public class PostServiceImpl implements PostService{
     private AdminRepository adminRepository;
 
     @Autowired
-    private BlogUserRepository blogUserRepository;
-
-    @Autowired
     private PostRepository postRepository;
-
-//    private Admin admin;
-
-//    List<Comment> commentList = new ArrayList<>();
 
     public Boolean postDoesNotExistById(Integer id) {
         return !postRepository.existsById(id);
