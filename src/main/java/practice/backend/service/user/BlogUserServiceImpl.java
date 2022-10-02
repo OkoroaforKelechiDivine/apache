@@ -12,7 +12,6 @@ import practice.backend.model.roleType.UserType;
 import practice.backend.model.user.BlogUser;
 import practice.backend.repository.admin.AdminRepository;
 import practice.backend.repository.user.BlogUserRepository;
-import practice.backend.service.email.EmailSenderService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
