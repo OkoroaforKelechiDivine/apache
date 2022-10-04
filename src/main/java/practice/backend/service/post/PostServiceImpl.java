@@ -7,15 +7,12 @@ import practice.backend.dto.request.CreatePostDto;
 import practice.backend.dto.request.UpdatePostDto;
 import practice.backend.exception.BlogException;
 import practice.backend.model.admin.Admin;
-import practice.backend.model.comment.Comment;
 import practice.backend.model.post.Post;
 import practice.backend.model.roleType.UserType;
 import practice.backend.repository.admin.AdminRepository;
 import practice.backend.repository.post.PostRepository;
-import practice.backend.repository.user.BlogUserRepository;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -26,14 +23,7 @@ public class PostServiceImpl implements PostService{
     private AdminRepository adminRepository;
 
     @Autowired
-    private BlogUserRepository blogUserRepository;
-
-    @Autowired
     private PostRepository postRepository;
-
-//    private Admin admin;
-
-//    List<Comment> commentList = new ArrayList<>();
 
     public Boolean postDoesNotExistById(Integer id) {
         return !postRepository.existsById(id);

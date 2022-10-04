@@ -12,7 +12,6 @@ import practice.backend.model.roleType.UserType;
 import practice.backend.model.user.BlogUser;
 import practice.backend.repository.admin.AdminRepository;
 import practice.backend.repository.user.BlogUserRepository;
-import practice.backend.service.email.EmailSenderService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,9 +24,6 @@ public class BlogUserServiceImpl implements BlogUserService {
 
     @Autowired
     private BlogUserRepository blogUserRepository;
-
-    @Autowired
-    private EmailSenderService emailSenderService;
 
     @Autowired
     private AdminRepository adminRepository;
@@ -59,8 +55,6 @@ public class BlogUserServiceImpl implements BlogUserService {
    
     @Override
     public BlogUser createUser(RegisterUserDto user) throws BlogException {
-        String mailSubject = "The smoking Gun OTP.";
-
         if (Objects.equals(user.getEmail(), "")){
             throw new BlogException("User email is empty.");
         }
@@ -92,7 +86,6 @@ public class BlogUserServiceImpl implements BlogUserService {
             }
             adminRepository.save(admin);
         }
-//        emailSenderService.sendOTP(user.getEmail(), mailSubject, emailSenderService.generateOTP());
         return blogUserRepository.save(blogUser);
     }
 

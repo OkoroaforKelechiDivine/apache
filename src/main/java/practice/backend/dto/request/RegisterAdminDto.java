@@ -3,12 +3,10 @@ package practice.backend.dto.request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.naming.factory.SendMailFactory;
 import practice.backend.model.roleType.Gender;
 import practice.backend.model.roleType.UserType;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
