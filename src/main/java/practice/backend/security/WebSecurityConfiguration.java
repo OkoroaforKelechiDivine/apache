@@ -41,7 +41,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/blog-user")
+                .antMatchers(HttpMethod.POST, "/blog-user", "/posts")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

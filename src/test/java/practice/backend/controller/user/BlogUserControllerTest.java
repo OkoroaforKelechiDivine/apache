@@ -44,9 +44,9 @@ public class BlogUserControllerTest {
     @Test
     @DisplayName("Create account")
     public void test_createUserAccount() throws Exception {
-        registerDto.setPassword("I am the female admin.");
-        registerDto.setUsername("Word of a woman");
-        registerDto.setGender(Gender.FEMALE);
+        registerDto.setPassword("password.");
+        registerDto.setUsername("zipDemon");
+        registerDto.setGender(Gender.MALE);
         registerDto.setRoleType(UserType.ADMIN);
         registerDto.setEmail("okoroaforkelechi123@gmail.com");
 
