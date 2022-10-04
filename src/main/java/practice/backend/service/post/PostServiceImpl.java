@@ -47,7 +47,7 @@ public class PostServiceImpl implements PostService{
         Post post = new Post();
         post.setCreatedDate(LocalDateTime.now());
         post.setContent(createPostDto.getContent());
-        post.setAuthor(createPostDto.getAuthor());
+        post.setAuthor(UserType.ADMIN);
 //        post.setReactions(createPostDto.getReactions());
         post.setAdminId(createPostDto.getAdminId());
 
