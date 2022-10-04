@@ -44,7 +44,7 @@ public class PostControllerTest {
         createPostDto.setAuthor(UserType.ADMIN);
         createPostDto.setAdminId(2);
 
-        this.mockMvc.perform(post("/posts")
+        this.mockMvc.perform(post("/blog-user/post")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(createPostDto)))
                 .andExpect(status().isOk())
