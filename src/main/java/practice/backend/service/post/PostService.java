@@ -18,5 +18,4 @@ public interface PostService {
     void deletePost(int postId, int adminId) throws BlogException;
 
     List<Post> findAllPosts();
-
 }
