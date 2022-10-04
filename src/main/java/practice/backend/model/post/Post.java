@@ -3,7 +3,6 @@ package practice.backend.model.post;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import practice.backend.model.reaction.Reactions;
 import practice.backend.model.roleType.UserType;
 
 import javax.persistence.*;
@@ -28,6 +27,4 @@ public class Post {
     private int postView;
 
     private Integer adminId;
-
-    private Reactions reactions;
 }

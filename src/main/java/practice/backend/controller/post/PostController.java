@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/blog-user")
 @Slf4j
 @CrossOrigin(origins = "true", allowCredentials = "true")
 public class PostController {
@@ -23,7 +23,7 @@ public class PostController {
     @Autowired
     private PostServiceImpl postService;
 
-    @PostMapping("")
+    @PostMapping("/post")
     public ResponseEntity<?> createPost(@Valid @RequestBody CreatePostDto createPostDto,  HttpServletRequest httpServletRequest) throws BlogException {
         postService.createPost(createPostDto);
         ResponseDetails responseDetails = new ResponseDetails(LocalDateTime.now(), "Your post has been shared successfully.", HttpStatus.OK.toString());

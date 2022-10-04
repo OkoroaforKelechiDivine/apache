@@ -3,7 +3,6 @@ package practice.backend.dto.request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import practice.backend.model.reaction.Reactions;
 import practice.backend.model.roleType.UserType;
 
 @Data
@@ -16,6 +15,4 @@ public class CreatePostDto {
     private UserType author;
 
     private Integer adminId;
-
-    private Reactions reactions;
 }
